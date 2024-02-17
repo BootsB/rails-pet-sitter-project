@@ -1,0 +1,7 @@
+<h1>Edit Profile</h1>
+<%= simple_form_for @profile, url: profiles_path, method: :patch do |form| %>
+  <%= form.input :first_name %>
+  <%= form.input :last_name %>
+  <%= form.input :description %>
+  <%= form.button :submit %>
+<% end %>
