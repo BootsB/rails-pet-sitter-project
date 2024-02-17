@@ -1,0 +1,41 @@
+<div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1581888227599-779811939961?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-8 p-3">
+      <div class="card bg-light p-3">
+        <h1><strong><%= @pet.name.capitalize %></strong></h1>
+        <p ><%= @pet.age %> years old</p>
+      </div>
+      <div class="card bg-light mt-3 p-3">
+        <h3>A bit more about them...</h3>
+        <p><%= @pet.description %></p>
+      </div>
+    </div>
+
+    <div class="col-4 p-3">
+      <div class="card p-3 bg-light">
+        <h5>When <%= @pet.name.capitalize %> is free:</h5>
+        <table class="table table-bordered mt-3">
+          <tbody>
+            <tr>
+              <th>Start Date:</th>
+              <td class="bg-white"><%= @pet.start_date %></td>
+            </tr>
+            <tr>
+              <th>End Date:</th>
+              <td class="bg-white"><%= @pet.end_date %></td>
+            </tr>
+          </tbody>
+        </table>
+      <%= link_to "Look after #{@pet.name.capitalize}!", "", class: 'btn btn-info mt-3' %>
+      </div>
+      <div class="card p-3 mt-3 bg-light">
+        <h3>Details</h3>
+        <div class="mt-3">
+            <p><strong>Address:</strong> <%= @pet.address %>, <%= @pet.postcode %></p>
+            <p><strong>Price:</strong> £<%= @pet.price %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

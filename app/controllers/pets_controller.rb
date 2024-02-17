@@ -1,6 +1,10 @@
 class PetsController < ApplicationController
+  before_action :set_pet, only: %i[show]
   def index
     @pets = Pet.all
+  end
+
+  def show
   end
 
   def new
@@ -21,5 +25,9 @@ class PetsController < ApplicationController
 
   def pet_params
     params.require(:pet).permit(:name, :age, :address, :postcode, :description, :price, :start_date, :end_date)
+  end
+  
+  def set_pet
+    @pet = Pet.find(params[:id])
   end
 end
