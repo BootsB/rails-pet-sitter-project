@@ -3,7 +3,11 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
 
   def show
-    @profile = User.find(params[:id]).profile
+    @profile = Profile.find_by(id: params[:id])
+    unless @profile
+      flash[:error] = "Profile not found"
+      redirect_to root_path
+    end
   end
 
   def new
@@ -15,20 +19,18 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = current_user.profile || current_user.build_profile
   end
 
   def create
     @profile = current_user.build_profile(profile_params)
     if @profile.save
-      redirect_to root_path, notice: "Profile successfully created!"
+      redirect_to @profile, notice: "Profile successfully created!"
     else
       render :new
     end
   end
 
   def update
-    @profile = current_user.profile
     if @profile.update(profile_params)
       redirect_to root_path, notice: "Profile successfully updated!"
     else
@@ -43,6 +45,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :phone_number, :address, :description)
+    params.require(:profile).permit(:first_name, :last_name, :phone_number, :address, :description, :age)
   end
 end

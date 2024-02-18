@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :requests
   end
   resources :profiles, only: [:new, :edit, :create, :update]
-  get "users/:id", to: "profile#show", as: "user_profile" #just for show
+  get "users/:id", to: "profiles#show", as: "user_profile" #just for show
 
   resources :pets do
     resources :requests
