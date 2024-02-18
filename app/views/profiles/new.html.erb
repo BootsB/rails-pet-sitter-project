@@ -4,6 +4,7 @@
       <h1>Create your profile</h1>
       <div class="mt-3">
         <%= simple_form_for @profile || current_user.build_profile, url: profiles_path, method: :post do |form| %>
+          <%= form.input :photo %>
           <%= form.input :first_name %>
           <%= form.input :last_name %>
           <%= form.input :description %>
