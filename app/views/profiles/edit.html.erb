@@ -1,8 +1,12 @@
 <h1>Edit Profile</h1>
-<%= simple_form_for @profile, url: profile_path(@profile), method: :patch do |form| %>
+<div class="container">
+  <%= simple_form_for @profile, url: profile_path(@profile), method: :patch do |form| %>
   <%= form.input :first_name %>
   <%= form.input :last_name %>
   <%= form.input :description %>
   <%= form.input :age %>
-  <%= form.button :submit %>
+  <%= form.button :submit, class: "btn btn-primary" %>
 <% end %>
+<br>
+<%# TO IMPLEMENT DESTROY BUTTON HERE -------<> %>
+</div>
