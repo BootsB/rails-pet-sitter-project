@@ -13,7 +13,7 @@
       <% if current_user.id == @pet.user_id %>
       <div class=" d-inline-flex mt-3 ">
         <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary ms-2" %>
-        <%= link_to "Delete", pet_path(@pet.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-secondary ms-2" %>
+        <%= link_to "Delete", pet_path(@pet.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger ms-2" %>
       </div>
       <% end %>
 
