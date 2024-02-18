@@ -36,3 +36,5 @@
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
+# Ignore extra files
+.env*

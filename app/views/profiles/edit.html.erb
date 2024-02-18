@@ -5,6 +5,7 @@
       <h1>Edit your profile</h1>
       <div class="mt-3">
         <%= simple_form_for @profile, url: profile_path(@profile), method: :patch do |form| %>
+          <%= form.input :photo, as: :file %>
           <%= form.input :first_name %>
           <%= form.input :last_name %>
           <%= form.input :description %>
