@@ -39,10 +39,13 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    # @profile = Profile.find(params[:id])
-    # @profile.destroy
-    # redirect_to root_path, notice: 'Profile successfully deleted!'
-    # TO BE IMPLEMENTED AND TO TEST
+    if @profile.destroy
+      flash[:notice] = "Profile successfully deleted."
+      redirect_to new_profile_path, notice: "Please create a new profile."
+    else
+      flash[:error] = "Failed to delete profile."
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private

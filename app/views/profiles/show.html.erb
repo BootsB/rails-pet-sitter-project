@@ -29,6 +29,8 @@
           <dd><%= @profile.age %></dd>
 
         </dl>
+        <%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
+        <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
