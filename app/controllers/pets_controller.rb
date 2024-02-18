@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: %i[show edit update]
+  before_action :set_pet, only: %i[show edit update destroy]
   def index
     @pets = Pet.all
   end
@@ -26,11 +26,17 @@ class PetsController < ApplicationController
 
   def update
     if @pet.update(pet_params)
-      redirect_to @pet, notice: "Pet was successfully updated."
+      redirect_to @pet, notice: "Successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @pet.destroy
+    redirect_to pets_url, notice: "Successfully destroyed."
+  end
+
 
   private
 
