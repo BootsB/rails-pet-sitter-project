@@ -1,4 +1,4 @@
-<div class="bg-img" style="background-image: url('https://images.unsplash.com/photo-1581888227599-779811939961?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+<div class="bg-img" style="background-image: <%= cl_image_tag @pet.photo.key, height: 300, width: 400, crop: :fill %>"></div>
 <div class="container margin-top-negative">
   <div class="row">
     <div class="col-8 p-3">
