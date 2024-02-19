@@ -1,11 +1,12 @@
 <%= simple_form_for(pet) do |f| %>
-  <%= f.input:name, label: "Pet's name" %>
-  <%= f.input:age, label: "Pet's age"%>
-  <%= f.input:address, label: "Pet's address"%>
-  <%= f.input:postcode, label: "Postcode" %>
-  <%= f.input:description, label: "How can we help you?" %>
-  <%= f.input:price, label: "How much is your daily offer?"%>
-  <%= f.input:start_date, label: "Start date"%>
-  <%= f.input:end_date, label: "End date" %>
+  <%= f.input :name, label: "Pet's name" %>
+  <%= f.input :age, label: "Pet's age"%>
+  <%= f.input :category, label:"Pet's species", collection: Pet.categories.keys %>
+  <%= f.input :address, label: "Pet's address"%>
+  <%= f.input :postcode, label: "Postcode" %>
+  <%= f.input :description, label: "How can we help you?" %>
+  <%= f.input :price, label: "How much is your daily offer?"%>
+  <%= f.input :start_date, label: "Start date"%>
+  <%= f.input :end_date, label: "End date" %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
