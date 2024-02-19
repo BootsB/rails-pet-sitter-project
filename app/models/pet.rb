@@ -1,7 +1,8 @@
 class Pet < ApplicationRecord
-  belongs_to :user
   has_many :requests
-  validates :name, :address, :age, :postcode, :description, :price, :start_date, :end_date, :category, presence: true
+  belongs_to :user
+  validates :name, :address, :age, :postcode, :description, :price, :start_date, :end_date, :photo, :category, presence: true
+  has_one_attached :photo
   enum category: {
     "dog" => 0,
     "cat" => 1,
