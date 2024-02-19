@@ -27,7 +27,7 @@
             </div>
             <div class="ms-3">
               <i class="fa-solid fa-sterling-sign"></i>
-              <span><%= pet.price %> / day</span>
+              <span><%= sprintf('%.2f', pet.price) %> / day</span>
             </div>
             <div class="ms-auto ">
               <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-primary' %>

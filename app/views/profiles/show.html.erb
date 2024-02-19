@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-6 m-auto mt-3">
+    <div class="bg-light p-3">
+      <h1>Your profile</h1>
+      <div class="mt-3">
+        <dl>
+
+          <dt>Avatar:</dt>
+          <%= cl_image_tag @profile.photo.key %>
+          <br>
+
+          <dt>First Name:</dt>
+          <dd><%= @profile.first_name %></dd>
+
+          <br>
+
+          <dt>Last Name:</dt>
+          <dd><%= @profile.last_name %></dd>
+
+          <br>
+
+          <dt>Bio:</dt>
+          <dd><%= @profile.description %></dd>
+
+          <br>
+
+          <dt>Age:</dt>
+          <dd><%= @profile.age %></dd>
+
+        </dl>
+        <%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
+        <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
