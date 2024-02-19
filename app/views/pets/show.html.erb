@@ -1,4 +1,4 @@
-<div class="bg-img" style="background-image: <%= cl_image_tag @pet.photo.key, height: 300, width: 400, crop: :fill %>"></div>
+<div class="bg-img" style="background-image: url('<%= cl_image_path @pet.photo.key %>'); height: 300px; width: 400px;"></div>
 <div class="container margin-top-negative">
   <div class="row">
     <div class="col-8 p-3">
