@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users do
-    resources :requests
   end
   resources :profiles, only: [:new, :edit, :create, :update]
   get '/profiles/:id', to: 'profiles#show', as: 'user_profile' #just for show
   delete '/profiles/:id', to: 'profiles#destroy', as: 'delete_user_profile' #just for delete
 
   resources :pets do
-    resources :requests
+    resources :requests, only: [:create]
   end
 
   root to: "pages#home"
