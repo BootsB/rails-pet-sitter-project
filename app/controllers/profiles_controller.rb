@@ -22,6 +22,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
+    check_selected_roles(profile_params[:role])
     @profile = current_user.build_profile(profile_params)
     if @profile.save
       redirect_to @profile, notice: "Profile successfully created!"
@@ -31,6 +32,12 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    if profile_params[:role].present?
+      profile_params[:role] = [profile_params[:role]] # Convert the value to an array
+    else
+      profile_params.delete(:role) # Remove the parameter if it's empty
+    end
+
     if @profile.update(profile_params)
       redirect_to root_path, notice: "Profile successfully updated!"
     else
@@ -50,11 +57,22 @@ class ProfilesController < ApplicationController
 
   private
 
+  def check_selected_roles(roles)
+    if roles.present?
+      # Print out or log the selected roles
+      Rails.logger.info "Selected roles: #{roles}"
+    else
+      # Handle the case where no roles are selected
+      Rails.logger.info "No roles selected"
+    end
+  end
+
   def set_profile
     @profile = current_user.profile
   end
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :phone_number, :description, :age, :photo)
+    puts "Role Param: #{params[:role]}"
+    params.require(:profile).permit(:first_name, :last_name, :phone_number, :description, :age, :photo, :role)
   end
 end

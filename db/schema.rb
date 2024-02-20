@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_114115) do
     t.datetime "updated_at", null: false
     t.integer "age"
     t.string "phone_number"
-    t.string "role", array: true
+    t.string "role"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

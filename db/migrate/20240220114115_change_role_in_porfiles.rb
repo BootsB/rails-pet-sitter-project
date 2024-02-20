@@ -1,4 +1,4 @@
-class AddRoleToProfiles < ActiveRecord::Migration[7.0]
+class ChangeRoleInPorfiles < ActiveRecord::Migration[7.0]
   def change
     add_column :profiles, :role, :string
   end
