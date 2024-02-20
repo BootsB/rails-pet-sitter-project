@@ -1,13 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: [:edit, :update, :destroy]
+  before_action :check_profile_completion, :set_profile, only: %i[edit update destroy]
 
   def show
     @profile = Profile.find_by(id: params[:id])
-    unless @profile
-      flash[:error] = "Profile not found"
-      redirect_to root_path
-    end
+    return redirect_to root_path, flash: { error: "Profile not found" } unless @profile
   end
 
   def new
@@ -69,6 +66,13 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = current_user.profile
+  end
+
+  def check_profile_completion
+    return if current_user.profile.present?
+
+    flash[:error] = "Please create a profile before continuing."
+    redirect_to new_profile_path
   end
 
   def profile_params
