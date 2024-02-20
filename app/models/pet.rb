@@ -12,4 +12,6 @@ class Pet < ApplicationRecord
     "bird" => 5,
     "other" => 6
   }
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
