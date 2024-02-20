@@ -4,7 +4,6 @@
       <%= image_tag "Best-pet-sitter-logo.png", alt: "Best Pet Sitter logo" %>
     <% end %>
 
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,24 +11,47 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active d-none">
-            <%= link_to "", "", class: "nav-link" %>
-          </li>
           <li class="nav-item">
             <%= link_to "See Pets", pets_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown ms-1">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "avatar", alt: "dropdown menu" %>
-          </a>
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.profile.present? && current_user.profile.photo.attached? %>
+                <%= cl_image_tag current_user.profile.photo.key, class: "avatar-img rounded-circle border", alt: "dropdown menu", width: 45, height: 45, crop: :thumb, gravity: :face %>
+              <% else %>
+                <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "avatar", alt: "dropdown menu" %>
+              <% end %>
+            </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-            <% if current_user && current_user.profile.present? && current_user.profile.id.present? %>
-              <%= link_to "Add pet", new_pet_path, class: "dropdown-item" %>
-              <%= link_to "My Profile", user_profile_path(current_user.profile), class: "dropdown-item" %>
-              <%= link_to "Edit profile", edit_profile_path(current_user.profile), class: "dropdown-item" %>
-            <% end %>
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <% if current_user.profile.present? && current_user.profile.id.present? %>
+                <%= link_to user_profile_path(current_user.profile), class: "dropdown-item" do %>
+                  <i class="fas fa-cogs"></i> Configure Profile
+                <% end %>
+                <%= link_to "Add pet", new_pet_path, class: "dropdown-item" %>
+                <!-- ADDING LISTINGS FOR PETS HERE -->
+                <!-- OWNER -->
+                <% if current_user.pet_owner? %>
+                  <%= link_to "My Owner Listings", pets_path, class: "dropdown-item" %>
+                <% end %>
+                <!-- SITTER -->
+                <% if current_user.pet_sitter? %>
+                  <%= link_to "My Sitter Listings", pets_path, class: "dropdown-item" %>
+                <% end %>
+                <!-- BOTH -->
+                 <% if current_user.both? %>
+                  <%= link_to "My Owner Listings", pets_path, class: "dropdown-item" %>
+                  <%= link_to "My Sitter Listings", pets_path, class: "dropdown-item" %>
+                <% end %>
+                <!-- END OF LISTINGS -->
+              <% else %>
+                <!-- Alert message for users without a profile -->
+                <div class="alert alert-warning" role="alert">
+                  You haven't created a profile yet. Please create your profile to continue.
+                </div>
+                <!-- Link to create profile for users without a profile -->
+                <%= link_to "Create Profile", new_profile_path, class: "dropdown-item" %>
+              <% end %>
+              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>

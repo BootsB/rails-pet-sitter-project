@@ -11,31 +11,33 @@
   <p><strong><%= @pets.size %></strong> pets:</p>
 
   <div class="row">
-    <% @pets.each do |pet| %>
-    <div class="col-4 mb-4">
-      <div class="card">
-        <img class="card-img-top"src="https://images.unsplash.com/photo-1581888227599-779811939961?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="300px">
-        <div class="card-body bg-light">
-          <div class="card-title">
-            <h3><strong><%= pet.name.capitalize %></strong></h3>
-          </div>
-          <p><%= pet.description.capitalize %></p>
-          <div class="d-flex">
-            <div>
-              <i class="fa-solid fa-house"></i>
-              <span><%= pet.postcode.upcase %></span>
+    <% if @pets %>
+      <% @pets.each do |pet| %>
+      <div class="col-4 mb-4">
+        <div class="card">
+          <img class="card-img-top"src="<%= cl_image_path pet.photo.key %>" height="300px">
+          <div class="card-body bg-light">
+            <div class="card-title">
+              <h3><strong><%= pet.name.capitalize %></strong></h3>
             </div>
-            <div class="ms-3">
-              <i class="fa-solid fa-sterling-sign"></i>
-              <span><%= sprintf('%.2f', pet.price) %> / day</span>
-            </div>
-            <div class="ms-auto ">
-              <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-primary' %>
+            <p><%= pet.description.capitalize %></p>
+            <div class="d-flex">
+              <div>
+                <i class="fa-solid fa-house"></i>
+                <span><%= pet.postcode.upcase %></span>
+              </div>
+              <div class="ms-3">
+                <i class="fa-solid fa-sterling-sign"></i>
+                <span><%= sprintf('%.2f', pet.price) %> / day</span>
+              </div>
+              <div class="ms-auto ">
+                <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-primary' %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <% end %>
     <% end %>
   </div>
 </div>

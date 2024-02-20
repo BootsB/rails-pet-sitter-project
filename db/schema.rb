@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_19_095725) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
@@ -67,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_19_095725) do
     t.datetime "updated_at", null: false
     t.integer "age"
     t.string "phone_number"
+    t.string "role"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

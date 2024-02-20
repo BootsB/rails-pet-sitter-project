@@ -6,7 +6,13 @@
         <dl>
 
           <dt>Avatar:</dt>
-          <%= cl_image_tag @profile.photo.key %>
+          <br>
+          <dd><% if @profile.photo.attached? %>
+              <%= cl_image_tag @profile.photo.key, class: "photo-profile-img", width: 300, height: 350, crop: :thumb %>
+            <% else %> <!-- Display a default profile picture if the user doesn't have one -->
+              <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "avatar", alt: "default picture" %>
+            <% end %>
+          </dd>
           <br>
 
           <dt>First Name:</dt>
@@ -26,6 +32,9 @@
 
           <dt>Age:</dt>
           <dd><%= @profile.age %></dd>
+
+         <dt>Role:</dt>
+         <dd><%= @profile.role.humanize %></dd>
 
         </dl>
         <%= link_to 'Back', root_path, class: 'btn btn-secondary' %>

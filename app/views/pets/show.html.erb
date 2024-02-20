@@ -10,6 +10,17 @@
         <h3>A bit more about them...</h3>
         <p><%= @pet.description %></p>
       </div>
+      <div class="card bg-light mt-3 p-3">
+        <div id="map" style="width: 100%; height: 400px;"
+          data-controller="map"
+          data-map-coords-value="<%= @coords.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+
+
+
+
       <% if current_user.id == @pet.user_id %>
       <div class=" d-inline-flex mt-3 ">
         <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary ms-2" %>
@@ -34,7 +45,7 @@
             </tr>
           </tbody>
         </table>
-      <%= link_to "Look after #{@pet.name.capitalize}!", "", class: 'btn btn-info mt-3' %>
+      <%= link_to "Look after #{@pet.name.capitalize}!", pet_requests_path(@pet.id), data: {turbo_method: :post, turbo_confirm: "Are you sure?"}, class: 'btn btn-info mt-3' %>
       </div>
       <div class="card p-3 mt-3 bg-light">
         <h3>Details</h3>

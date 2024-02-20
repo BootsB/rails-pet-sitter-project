@@ -10,6 +10,11 @@ class PetsController < ApplicationController
   end
 
   def show
+
+  @coords = {
+      lat: @pet.latitude,
+      lng: @pet.longitude
+    }
   end
 
   def new
