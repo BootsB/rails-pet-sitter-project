@@ -29,9 +29,10 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
             <% if current_user && current_user.profile.present? && current_user.profile.id.present? %>
+              <%= link_to user_profile_path(current_user.profile), class: "dropdown-item" do %>
+              <i class="fas fa-cogs"></i> Configure Profile
+              <% end %>
               <%= link_to "Add pet", new_pet_path, class: "dropdown-item" %>
-              <%= link_to "My Profile", user_profile_path(current_user.profile), class: "dropdown-item" %>
-              <%= link_to "Edit profile", edit_profile_path(current_user.profile), class: "dropdown-item" %>
               <% else %>
               <!-- Alert message for users without a profile -->
               <div class="alert alert-warning" role="alert">
