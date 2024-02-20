@@ -3,8 +3,9 @@ Rails.application.routes.draw do
     resources :requests
   end
   resources :profiles, only: [:new, :edit, :create, :update]
-  get '/profiles/:id', to: 'profiles#show', as: 'user_profile' #just for show
-  delete '/profiles/:id', to: 'profiles#destroy', as: 'delete_user_profile' #just for delete
+  get '/profiles/:id', to: 'profiles#show', as: 'user_profile' #just for show profile
+  delete '/profiles/:id', to: 'profiles#destroy', as: 'delete_user_profile' #just for delete profile
+  delete '/profiles/:id/remove_image', to: 'profiles#remove_image', as: 'remove_profile_image' #just for remove image
 
   resources :pets do
     resources :requests

@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_profile_completion, :set_profile, only: %i[edit update destroy]
+  before_action :check_profile_completion, :set_profile, only: %i[edit update destroy remove_image]
 
   def show
     @profile = Profile.find_by(id: params[:id])
@@ -50,6 +50,11 @@ class ProfilesController < ApplicationController
       flash[:error] = "Failed to delete profile."
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def remove_image
+    @profile.photo.purge if @profile.photo.attached?
+    redirect_to edit_profile_path(@profile), notice: "Image successfully removed."
   end
 
   private
