@@ -6,7 +6,7 @@
         <dl>
 
           <dt>Avatar:</dt>
-          <%= cl_image_tag @profile.photo.key %>
+          <%= cl_image_tag @profile.photo.key, class: "photo-profile-img", width: 300, height: 350, crop: :thumb %>
           <br>
 
           <dt>First Name:</dt>
