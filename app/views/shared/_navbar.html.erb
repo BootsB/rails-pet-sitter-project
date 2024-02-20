@@ -29,6 +29,10 @@
               <%= link_to "My Profile", user_profile_path(current_user.profile), class: "dropdown-item" %>
               <%= link_to "Edit profile", edit_profile_path(current_user.profile), class: "dropdown-item" %>
               <% else %>
+              <!-- Alert message for users without a profile -->
+              <div class="alert alert-warning" role="alert">
+                You haven't created a profile yet. Please create your profile to continue.
+              </div>
               <!-- Link to create profile for users without a profile -->
               <%= link_to "Create Profile", new_profile_path, class: "dropdown-item" %>
             <% end %>
