@@ -56,7 +56,7 @@ class PetsController < ApplicationController
     elsif current_user.both?
       @pets = current_user.both_pets
     else
-      @pets = []
+      @pets = [] # NO PETS
     end
   end
 
