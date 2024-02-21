@@ -11,7 +11,7 @@
       <% @pets.each do |pet| %>
       <div class="col-4 mb-4">
         <div class="card">
-          <img class="card-img-top"src="<%= cl_image_path pet.photo.key %>" height="300px">
+          <img class="card-img-top"src="<%= cl_image_path pet.photo.key %>" style="object-fit: cover; width: 100%; height: 300px;">
           <div class="card-body bg-light">
             <div class="card-title">
               <h3><strong><%= pet.name.capitalize %></strong></h3>
