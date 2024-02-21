@@ -5,9 +5,9 @@
   <%= f.input :address, label: "Pet's address"%>
   <%= f.input :postcode, label: "Postcode" %>
   <%= f.input :description, label: "How can we help you?" %>
-  <%= f.input :price, label: "How much is your daily offer?"%>
-  <%= f.input :start_date, label: "Start date"%>
-  <%= f.input :end_date, label: "End date" %>
+  <%= f.input :price, label: "How much is your daily offer?" %>
+  <%= f.label :booking_date, "Booking Date" %>
+  <%= f.date_field :start_date, min: Time.now.strftime('%Y-%m-%d'), max: "2030-12-31", class: "form-control" %><%= f.date_field :end_date, min: Time.now.strftime('%Y-%m-%d'), max: "2024-12-31", class: "form-control" %>
   <%= f.input :photo, as: :file %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
