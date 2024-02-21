@@ -5,8 +5,7 @@ class PetsController < ApplicationController
   end
 
   def show
-
-  @coords = {
+    @coords = {
       lat: @pet.latitude,
       lng: @pet.longitude
     }
