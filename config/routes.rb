@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   resources :pets do
     resources :requests, only: [:create]
+    collection do
+      get :pet_listings
+    end
   end
 
   root to: "pages#home"

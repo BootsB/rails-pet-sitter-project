@@ -1,0 +1,17 @@
+<h1>Pet Listings</h1>
+
+<% @pets.each do |pet| %>
+  <div class="pet-listing">
+    <% if pet.photo.attached? %>
+              <%= cl_image_tag pet.photo.key, class: "pet-profile-img", width: 300, height: 350, crop: :thumb %>
+            <% else %> <!-- Display a default profile picture if the user doesn't have one -->
+              <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "avatar", alt: "default picture" %>
+            <% end %>
+    <div class="pet-details">
+      <h2><%= pet.name %></h2>
+      <p><strong>Age:</strong> <%= pet.age %></p>
+      <p><strong>Description:</strong> <%= pet.description %></p>
+      <!-- Add more pet details here -->
+    </div>
+  </div>
+<% end %>
