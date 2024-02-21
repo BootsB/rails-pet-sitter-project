@@ -46,7 +46,19 @@ class PetsController < ApplicationController
     @pet.destroy
     redirect_to pets_url, notice: "Successfully destroyed."
   end
+  # LISTINGS FOR PETS
 
+  def pet_listings
+    if current_user.pet_owner?
+      @pets = current_user.owner_pets
+    elsif current_user.pet_sitter?
+      @pets = current_user.sitter_pets
+    elsif current_user.both?
+      @pets = current_user.both_pets
+    else
+      @pets = []
+    end
+  end
 
   private
 
