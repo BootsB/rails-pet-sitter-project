@@ -6,8 +6,12 @@
   <%= f.input :postcode, label: "Postcode" %>
   <%= f.input :description, label: "How can we help you?" %>
   <%= f.input :price, label: "How much is your daily offer?"%>
-  <%= f.input :start_date, label: "Start date"%>
-  <%= f.input :end_date, label: "End date" %>
+  <%= f.input :start_date, label: "Start date",
+              as: :string,
+              input_html: { data: { controller: "datepicker" } } %>
+  <%= f.input :end_date, label: "End date",
+              as: :string,
+              input_html: { data: { controller: "datepicker" } } %>
   <%= f.input :photo, as: :file %>
   <%= f.submit "Submit", class: "btn btn-info" %>
 <% end %>
