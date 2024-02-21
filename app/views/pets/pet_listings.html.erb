@@ -24,10 +24,14 @@
               </div>
               <div class="ms-3">
                 <i class="fa-solid fa-sterling-sign"></i>
-                <span><%= sprintf('%.2f', pet.price) %> / day</span>
+                <% if pet.price % 1 != 0 %>
+                  <span><%= sprintf('%.2f', pet.price) %> / day</span>
+                <% else %>
+                  <span><%= pet.price.round %> / day</span>
+                <% end %>
               </div>
               <div class="ms-auto ">
-                <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-primary' %>
+                <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-outline-primary' %>
               </div>
             </div>
           </div>
