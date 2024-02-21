@@ -32,16 +32,15 @@
                 <!-- ADDING LISTINGS FOR PETS HERE -->
                 <!-- OWNER -->
                 <% if current_user.pet_owner? %>
-                  <%= link_to "My Owner Listings", pet_listings_pets_path, class: "dropdown-item" %>
+                  <%= link_to "My Listings", pet_listings_pets_path, class: "dropdown-item" %>
                 <% end %>
                 <!-- SITTER -->
                 <% if current_user.pet_sitter? %>
-                  <%= link_to "My Sitter Listings", pet_listings_pets_path, class: "dropdown-item" %>
+                  <%= link_to "My Listings", pet_listings_pets_path, class: "dropdown-item" %>
                 <% end %>
                 <!-- BOTH -->
                  <% if current_user.both? %>
-                  <%= link_to "My Owner Listings", pet_listings_pets_path, class: "dropdown-item" %>
-                  <%= link_to "My Sitter Listings", pet_listings_pets_path, class: "dropdown-item" %>
+                  <%= link_to "My Listings", pet_listings_pets_path, class: "dropdown-item" %>
                 <% end %>
                 <!-- END OF LISTINGS -->
               <% else %>
