@@ -15,6 +15,7 @@
             <%= link_to "See Pets", pets_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown ms-1">
+          <!-- PROFILE & LOGIC -->
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.profile.present? && current_user.profile.photo.attached? %>
                 <%= cl_image_tag current_user.profile.photo.key, class: "avatar-img rounded-circle border", alt: "dropdown menu", width: 45, height: 45, crop: :thumb, gravity: :face %>
@@ -51,6 +52,7 @@
                 <!-- Link to create profile for users without a profile -->
                 <%= link_to "Create Profile", new_profile_path, class: "dropdown-item" %>
               <% end %>
+          <!-- ENDING PROFILE & LOGIC -->
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
