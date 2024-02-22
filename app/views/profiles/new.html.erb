@@ -10,8 +10,6 @@
           <%= form.input :description %>
           <%= form.input :phone_number %>
           <%= form.input :age %>
-          <%= form.label :role, "Choose your role:" %>
-          <%= form.select :role, Profile.roles.keys.map { |role| [role.humanize, role] }, { include_blank: false } %>
           <br>
           <br>
           <%= form.button :submit, class: "btn btn-info"%>

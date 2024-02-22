@@ -20,8 +20,6 @@
           <%= form.input :last_name %>
           <%= form.input :description %>
           <%= form.input :age %>
-          <%= form.label :role, "Choose your role:" %>
-          <%= form.select :role, Profile.roles.keys.map { |role| [role.humanize, role] }, { include_blank: false } %>
           <br>
           <br>
           <%= form.button :submit, class: "btn btn-primary" %>
