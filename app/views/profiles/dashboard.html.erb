@@ -10,7 +10,7 @@
             <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "img-request", alt: "User photo", width: 60, height: 60 %>
           <% end %>
           <div class="request-info text-center">
-            <p><strong><%= request.user.email %></strong> made a request for <strong><%= request.pet.name %></strong></p>
+            <p><strong><%= request.user.profile.first_name %></strong> made a request for <strong><%= request.pet.name %></strong></p>
           </div>
         </div>
       <% end %>
