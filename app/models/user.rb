@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :pets
   has_many :requests
+  has_many :pet_requests, through: :pets, source: :requests
   has_one  :profile
 
   # PET OWNER START
