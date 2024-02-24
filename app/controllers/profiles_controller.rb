@@ -57,6 +57,11 @@ class ProfilesController < ApplicationController
     redirect_to edit_profile_path(@profile), notice: "Image successfully removed."
   end
 
+  def dashboard
+    @user = current_user
+    @requests_received = @user.pet_requests
+  end
+
   private
 
   def check_selected_roles(roles)
