@@ -36,7 +36,9 @@
             <br>
 
           </div>
-        <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-info' %>
+          <% if @profile.user == current_user %>
+            <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-info' %>
+          <% end %>
       </div>
     </div>
   </div>
