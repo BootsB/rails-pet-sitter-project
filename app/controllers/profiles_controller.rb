@@ -60,7 +60,7 @@ class ProfilesController < ApplicationController
   def dashboard
     @user = current_user
     @requests_received = @user.pet_requests
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
   end
 
   private
