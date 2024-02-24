@@ -60,6 +60,7 @@ class ProfilesController < ApplicationController
   def dashboard
     @user = current_user
     @requests_received = @user.pet_requests
+    @profile = current_user.profile
   end
 
   private
