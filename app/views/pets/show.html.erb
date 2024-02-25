@@ -1,27 +1,55 @@
-<div class="bg-img" style="background-image: url('<%= cl_image_path @pet.photo.key %>');"></div>
-<div class="container margin-top-negative">
+<div class="container">
   <div class="row">
-    <div class="col-8 p-3">
-      <div class="card bg-light p-3">
-        <h1><strong><%= @pet.name.capitalize %></strong></h1>
-        <p ><%= @pet.age %> years old</p>
-      </div>
-      <div class="card bg-light mt-3 p-3">
-        <h3>A bit more about them...</h3>
-        <p><%= @pet.description %></p>
-      </div>
-      <div class="card bg-light mt-3 p-3">
-        <div id="map" style="width: 100%; height: 400px;"
-          data-controller="map"
-          data-map-coords-value="<%= @coords.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="col-md-8">
+      <!-- PET IMAGE AND INFO CONTAINER -->
+      <div class="card bg-light mt-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <!-- PET IMAGE -->
+            <div class="col-md-12 text-center">
+              <div class="pet-image-container">
+                <%= cl_image_tag @pet.photo.key, class: "pet-image img-fluid", alt: @pet.name, gravity: :face, crop: :thumb %>
+                <%# <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708886107/2bf8830f07e21e397bbc0329528fa210_r7ojjd.svg", alt: "Extra Image", class: "default-img-pet" %>
+                <!-- IMAGES CATEGORY -->
+                <% image_url = case @pet.category
+               when 'dog'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883789/5fb72f5daf6bc223a1acb628aeaaf023_ayw7l8.svg'
+               when 'cat'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883801/9e731b68e6be3e403f5a9da3d42ceb4a_cljpqm.svg'
+               when 'rabbit'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883841/265291b777d57c71c4ab5a80b819b14f_lj5plw.svg'
+               when 'ferret'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883847/5c66582570be738a966e3bbfb7891eca_vvnqbk.svg'
+               when 'fish'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883873/8a750e6469cf33f18d5a46a7252f415d_gpbw0e.svg'
+               when 'bird'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883898/01c52ec83a4efaf586efc278cf00b258_exetbe.svg'
+               else
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883940/f921728c3016d82b09e9d7b9e4145c09_q06owg.svg'
+               end %>
+
+              <%= cl_image_tag image_url, class: "pet-image-category", alt: @pet.name %>
+              </div>
+            </div>
+            <!-- PET INFO -->
+            <div class="col-md-12 text-center mt-3"> <!-- Center the text -->
+              <h1><%= @pet.name.capitalize %></h1>
+              <h3></h3>
+              <div class="pet-details">
+                <p class="house-user"><i class="fas fa-house-user"></i> <%= @pet.address %>, <%= @pet.postcode %></p>
+                <p><i class="fas fa-info"></i> <%= @pet.description %></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- END PET IMAGE AND INFO CONTAINER -->
     </div>
 
-    <div class="col-4 p-3">
+    <div class="col-md-4 p-3">
+      <!-- PET PRICE AND DATES -->
       <div class="card p-3 bg-light">
-        <h5>When <%= @pet.name.capitalize %> is free:</h5>
+        <p>From <i class="fas fa-lira-sign" style="color: green;"><%= @pet.price.to_i %></i> per night</p>
         <table class="table table-bordered mt-3">
           <tbody>
             <tr>
@@ -34,21 +62,29 @@
             </tr>
           </tbody>
         </table>
-      <%= link_to "Look after #{@pet.name.capitalize}!", pet_requests_path(@pet.id), data: {turbo_method: :post, turbo_confirm: "Are you sure?"}, class: 'btn btn-info mt-3' %>
+        <!-- CURRENT USER LOOK AFTER -->
+        <% if current_user.id == @pet.user_id %>
+          <div class="d-inline-flex mt-3">
+            <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary ms-2" %>
+            <%= link_to "Delete", pet_path(@pet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger ms-2" %>
+          </div>
+        <% else %>
+          <%= link_to "Look after #{@pet.name.capitalize}",
+                      pet_requests_path(@pet.id),
+                      data: { turbo_method: :post, turbo_confirm: "Are you sure?" },
+                      class: 'btn btn-info mt-3' %>
+        <% end %>
+        <!-- END CURRENT USER LOOK AFTER -->
       </div>
-      <div class="card p-3 mt-3 bg-light">
-        <h3>Details</h3>
-        <div class="mt-3">
-            <p><strong>Address:</strong> <%= @pet.address %>, <%= @pet.postcode %></p>
-            <p><strong>Price:</strong> £<%= sprintf('%.2f', @pet.price) %></p>
+
+      <!-- GEOLOCATION -->
+      <div class="card bg-light mt-3 p-3">
+        <div id="map" style="width: 100%; height: 400px;"
+          data-controller="map"
+          data-map-coords-value="<%= @coords.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
-      <% if current_user.id == @pet.user_id %>
-        <div class=" d-inline-flex mt-3 ">
-          <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary ms-2" %>
-          <%= link_to "Delete", pet_path(@pet.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger ms-2" %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
