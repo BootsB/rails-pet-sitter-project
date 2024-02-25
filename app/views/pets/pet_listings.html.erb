@@ -1,27 +1,30 @@
-
 <% if current_user.pets.present? %>
   <div class="container">
-    <div class="container d-none" data-controller="filter-pets">
-    </div>
-      <h1 class="mt-3">Your pets:</h1>
-    <p><strong><%= current_user.pets.size %></strong> pets:</p>
+    <div class="container d-none" data-controller="filter-pets"></div>
 
-  <div class="row">
-        <% current_user.pets.each do |pet| %>
+    <h1 class="mt-3">You Have <%= current_user.pets.size %> Pets</h1>
+    <div class="requests-btn mt-3">
+      <%= link_to "View Pet Sitting Requests", "/dashboard", class: "btn btn-info btn-lg" %>
+    </div>
+
+    <div class="row mt-4">
+      <% current_user.pets.each do |pet| %>
         <div class="col-4 mb-4">
-          <div class="card mb-3">
-            <img class="card-img-top"src="<%= cl_image_path pet.photo.key %>" style="object-fit: cover; width: 100%; height: 300px;">
-            <div class="card-body bg-light">
-              <div class="card-title">
-                <h3><strong><%= pet.name.capitalize %></strong></h3>
+          <div class="card pet-card">
+            <img class="card-img-top" src="<%= cl_image_path pet.photo.key %>" style="object-fit: cover; width: 100%; height: 300px;">
+            <div class="card-body bg-light d-flex flex-column">
+              <div>
+                <div class="card-title">
+                  <h3><strong><%= pet.name.capitalize %></strong></h3>
+                </div>
+                <p><%= pet.description.capitalize %></p>
               </div>
-              <p><%= pet.description.capitalize %></p>
-              <div class="d-flex">
+              <div class="mt-auto d-flex justify-content-between">
                 <div>
                   <i class="fa-solid fa-house"></i>
                   <span><%= pet.postcode.upcase %></span>
                 </div>
-                <div class="ms-3">
+                <div>
                   <i class="fa-solid fa-sterling-sign"></i>
                   <% if pet.price % 1 != 0 %>
                     <span><%= sprintf('%.2f', pet.price) %> / day</span>
@@ -29,25 +32,24 @@
                     <span><%= pet.price.round %> / day</span>
                   <% end %>
                 </div>
-                <div class="ms-auto ">
+                <div>
                   <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-outline-primary' %>
                 </div>
               </div>
             </div>
           </div>
-          <!-- INSERT LINK TO REQUESTS PAGE BELOW -->
-          <%= link_to "Requests to pet sit #{pet.name}", "/dashboard", class: "btn btn-info" %>
         </div>
-        <% end %>
+      <% end %>
     </div>
-  </div>
 
+  </div>
 <% else %>
   <div class="container">
     <div class="container d-none" data-controller="filter-pets">
     </div>
-      <h1 class="mt-3">Your pets:</h1>
-    <p><strong>You dont have any pets!</p>
+    <h1 class="mt-3">Your pets:</h1>
+    <p><strong>You dont have any pets!</strong></p>
     <%= link_to "Add pet", new_pet_path, class: "btn btn-info" %>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
 <% end %>
