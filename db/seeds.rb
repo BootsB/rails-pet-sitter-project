@@ -6,13 +6,15 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Pet.create!(name: "Fruna",
-age: 3, address: "54 Broadway Market",
-postcode: "E84QJ",
-description: "I'm travelling for 2 weeks and need someone to take care of my very well behaved dog.",
-price: 20,
-start_date:"2024-03-02",
-end_date: "2024-03-16",
-category: 0,
-user_id: 1,
-photo:"https://source.unsplash.com/random/?dog")
+Pet.create!(
+  name: "Emilia",
+  age: 4,
+  category: 0,
+  address: "54 Broadway Market",
+  postcode: "E84QJ",
+  description: "Hello, I'm travelling for some days and need someone to chill with my dog. She is very lazy",
+  price: 20,
+  start_date: "2024-02-22",
+  end_date: "2024-02-25",
+  photo: "https://source.unsplash.com/random/?dog"
+)
