@@ -13,34 +13,36 @@
   <div class="row">
     <% if @pets %>
       <% @pets.each do |pet| %>
-      <div class="col-4 mb-4">
-        <div class="card">
-          <img class="card-img-top" src="<%= cl_image_path pet.photo.key %>" style="object-fit: cover; width: 100%; height: 300px;">
-          <div class="card-body bg-light">
-            <div class="card-title">
-              <h3><strong><%= pet.name.capitalize %></strong></h3>
-            </div>
-            <p><%= pet.description.capitalize %></p>
-            <div class="d-flex">
+        <div class="col-4 mb-4">
+          <div class="card pet-card">
+            <img class="card-img-top" src="<%= cl_image_path pet.photo.key %>" style="object-fit: cover; width: 100%; height: 300px;">
+            <div class="card-body bg-light d-flex flex-column">
               <div>
-                <i class="fa-solid fa-house"></i>
-                <span><%= pet.postcode.upcase %></span>
+                <div class="card-title">
+                  <h3><strong><%= pet.name.capitalize %></strong></h3>
+                </div>
+                <p><%= pet.description.capitalize %></p>
               </div>
-              <div class="ms-3">
-                <i class="fa-solid fa-sterling-sign"></i>
-                <% if pet.price % 1 != 0 %>
-                  <span><%= sprintf('%.2f', pet.price) %> / day</span>
-                <% else %>
-                  <span><%= pet.price.round %> / day</span>
-                <% end %>
-              </div>
-              <div class="ms-auto ">
-                <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-outline-primary' %>
+              <div class="mt-auto d-flex justify-content-between">
+                <div>
+                  <i class="fa-solid fa-house"></i>
+                  <span><%= pet.postcode.upcase %></span>
+                </div>
+                <div>
+                  <i class="fa-solid fa-sterling-sign"></i>
+                  <% if pet.price % 1 != 0 %>
+                    <span><%= sprintf('%.2f', pet.price) %> / day</span>
+                  <% else %>
+                    <span><%= pet.price.round %> / day</span>
+                  <% end %>
+                </div>
+                <div>
+                  <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-outline-primary' %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <% end %>
     <% end %>
   </div>

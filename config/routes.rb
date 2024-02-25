@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   delete '/profiles/:id', to: 'profiles#destroy', as: 'delete_user_profile' #just for delete profile
   delete '/profiles/:id/remove_image', to: 'profiles#remove_image', as: 'remove_profile_image' #just for remove image
 
+  get '/dashboard', to: 'profiles#dashboard', as: 'request_dashboard' # request
+  get '/profiles/:id/dashboard', to: 'profiles#dashboard', as: 'dashboard'
+
   resources :pets do
     resources :requests, only: [:create]
     collection do
