@@ -14,8 +14,7 @@
             </div>
             <!-- PET INFO -->
             <div class="col-md-12 text-center mt-3 infopet"> <!-- Center the text -->
-              <h3><%= @pet.name.capitalize %></h3>
-              <p><%= @pet.age %> years old</p>
+              <strong><%= @pet.name.capitalize %></strong>
               <div class="pet-details">
                 <!-- IMAGES CATEGORY -->
                 <% image_url = case @pet.category
@@ -35,7 +34,10 @@
                  'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883940/f921728c3016d82b09e9d7b9e4145c09_q06owg.svg'
                end %>
 
-              <%= cl_image_tag image_url, class: "pet-image-category", alt: @pet.name %>
+              <div class="pet-image-category"><%= cl_image_tag image_url, alt: @pet.name %></div> <!-- Image Category -->
+              <div class="harthlogo">
+                <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708950159/red-heart-icon_suoupl.svg", alt: "Harth Image" %>
+              </div>
               <span><%= @pet.description %></span>
               </div>
             </div>
