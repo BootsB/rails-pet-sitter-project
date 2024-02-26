@@ -1,17 +1,21 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: %i[show edit update destroy]
+
   def index
-    @pets = Pet.all
+    puts "Received params: #{params.inspect}"
     @pet = Pet.new
+    @pets = Pet.all
+    @pets = Pet.where(category: params[:category]) if params[:category].present?
+    @pets = @pets.where("START_DATE >= ?", params[:start_date]) if params[:start_date].present?
+    @pets = @pets.where("END_DATE <= ?", params[:end_date]) if params[:end_date].present?
     respond_to do |format|
       format.html
-      format.json { render json: @pets }
+      format.text { render partial: "pets/pet_info", locals: {pets: @pets}, formats: [:html] }
     end
   end
 
   def show
-
-  @coords = {
+    @coords = {
       lat: @pet.latitude,
       lng: @pet.longitude
     }

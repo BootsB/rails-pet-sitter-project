@@ -1,49 +1,30 @@
-<div class="container">
-  <div class="container d-none" data-controller="filter-pets">
-    <h1 class="mt-3">Find your perfect match 🐶♥️</h1>
+<div class="container" data-controller="filter-pets">
+    <h1 class="mt-3 mb-4">Find your perfect match 🐶♥️</h1>
     <div class="filter-form">
-        <%= simple_form_for(@pet, data: { filter_pets_target: "form", action:"submit->filter-pets#send" }) do |f| %>
-        <%= f.input :category, label:"Pet's species", collection: Pet.categories.keys, input_html: { data: { filter_pets_target: "category" } } %>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-
-  <h1 class="mt-3">Find your perfect match ♥️</h1>
-  <p><strong><%= @pets.size %></strong> pets:</p>
-
-<div class="row">
-    <% if @pets %>
-      <% @pets.each do |pet| %>
-      <div class="col-4 mb-4">
-        <div class="card">
-          <img class="card-img-top"src="<%= cl_image_path pet.photo.key %>" style="object-fit: cover; width: 100%; height: 300px;">
-          <div class="card-body bg-light">
-            <div class="card-title">
-              <h3><strong><%= pet.name.capitalize %></strong></h3>
-            </div>
-            <p><%= pet.description.capitalize %></p>
-            <div class="d-flex">
-              <div>
-                <i class="fa-solid fa-house"></i>
-                <span><%= pet.postcode.upcase %></span>
-              </div>
-              <div class="ms-3">
-                <i class="fa-solid fa-sterling-sign"></i>
-                <% if pet.price % 1 != 0 %>
-                  <span><%= sprintf('%.2f', pet.price) %> / day</span>
-                <% else %>
-                  <span><%= pet.price.round %> / day</span>
-                <% end %>
-              </div>
-              <div class="ms-auto ">
-                <%= link_to "See more", pet_path(pet.id), class: 'btn btn-sm btn-outline-primary' %>
-              </div>
-            </div>
+      <%= simple_form_for(@pet, data: { filter_pets_target: "form", action:"submit->filter-pets#send" }) do |f| %>
+        <div class="row align-items-center">
+          <div class="col">
+            <%= f.input :category, label:"Pet's species", collection: Pet.categories.keys, input_html: { data: { filter_pets_target: "category" } } %>
+          </div>
+          <div class="col">
+            <%= f.input :start_date, label: "Start date",
+                  as: :string,
+                  input_html: { data: { controller: "datepicker", filter_pets_target: "startDate" } } %>
+          </div>
+          <div class="col">
+            <%= f.input :end_date, label: "End date",
+                  as: :string,
+                  input_html: { data: { controller: "datepicker", filter_pets_target: "endDate" } } %>
+          </div>
+          <div class="col">
+            <%= f.submit "Search", class: "btn btn-primary mb-2" %>
           </div>
         </div>
-      </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+
+    <p class="mt-3" data-filter-pets-target="petAmount"></p>
+
+    <div class="row" data-filter-pets-target="items">
+    </div>
 </div>
