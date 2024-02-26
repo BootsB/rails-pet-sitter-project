@@ -3,20 +3,14 @@
     <div class="col-md-8">
       <!-- PET IMAGE AND INFO CONTAINER -->
       <div class="card bg-light mt-3">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <!-- PET IMAGE -->
             <div class="col-md-12 text-center petcontainer">
-              <div class="pet-image-container">
-                <%= cl_image_tag @pet.photo.key, class: "pet-image img-fluid", alt: @pet.name, gravity: :face, crop: :thumb %>
-                <%# <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708886107/2bf8830f07e21e397bbc0329528fa210_r7ojjd.svg", alt: "Extra Image", class: "default-img-pet" %>
-              </div>
+                <!-- PET IMG -->
+                <%= cl_image_tag @pet.photo.key, class: "pet-image", alt: @pet.name, gravity: :center, crop: :fill %>
+
             </div>
             <!-- PET INFO -->
-            <div class="col-md-12 text-center mt-3 infopet"> <!-- Center the text -->
-              <strong><%= @pet.name.capitalize %></strong>
-              <div class="pet-details">
-                <!-- IMAGES CATEGORY -->
+            <div class="infopet"> <!-- Center the text -->
+            <!-- IMAGES CATEGORY -->
                 <% image_url = case @pet.category
                when 'Dog'
                  'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883789/5fb72f5daf6bc223a1acb628aeaaf023_ayw7l8.svg'
@@ -33,16 +27,41 @@
                else
                  'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883940/f921728c3016d82b09e9d7b9e4145c09_q06owg.svg'
                end %>
-
-              <div class="pet-image-category"><%= cl_image_tag image_url, alt: @pet.name %></div> <!-- Image Category -->
+              <!-- Image Category -->
+              <div class="pet-image-category"><%= cl_image_tag image_url, alt: @pet.name %></div>
               <div class="harthlogo">
                 <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708950159/red-heart-icon_suoupl.svg", alt: "Harth Image" %>
               </div>
-              <span><%= @pet.description %></span>
+              <strong id="petname"><%= @pet.name.capitalize %></strong>
+              <div class="pet-details">
+                <div class="tabs">
+                  <%= button_tag "About", class: "tab", id: "about-tab" %>
+                  <%= button_tag "Owner", class: "tab", id: "owner-tab" %>
+                  <%= button_tag "Care Details", class: "tab", id: "care-details-tab" %>
+                  <%= button_tag "Reviews", class: "tab", id: "reviews-tab" %>
+                </div>
+
+                <div id="about-content" class="tab-content">
+                  <!-- About Content Here -->
+                  <p><%= @pet.description %></p>
+                </div>
+
+                <div id="owner-content" class="tab-content">
+                  <!-- Owner Content Here -->
+                  <p>Owner details</p>
+                </div>
+
+                <div id="care-details-content" class="tab-content">
+                  <!-- Care Details Content Here -->
+                  <p>Care details</p>
+                </div>
+
+                <div id="reviews-content" class="tab-content">
+                  <!-- Reviews Content Here -->
+                  <p>Reviews</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
       </div>
       <!-- END PET IMAGE AND INFO CONTAINER -->
     </div>
