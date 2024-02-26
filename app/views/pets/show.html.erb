@@ -6,10 +6,17 @@
         <div class="card-body">
           <div class="row align-items-center">
             <!-- PET IMAGE -->
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center petcontainer">
               <div class="pet-image-container">
                 <%= cl_image_tag @pet.photo.key, class: "pet-image img-fluid", alt: @pet.name, gravity: :face, crop: :thumb %>
                 <%# <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708886107/2bf8830f07e21e397bbc0329528fa210_r7ojjd.svg", alt: "Extra Image", class: "default-img-pet" %>
+              </div>
+            </div>
+            <!-- PET INFO -->
+            <div class="col-md-12 text-center mt-3"> <!-- Center the text -->
+              <h3><%= @pet.name.capitalize %></h3>
+              <p><%= @pet.age %> years old</p>
+              <div class="pet-details">
                 <!-- IMAGES CATEGORY -->
                 <% image_url = case @pet.category
                when 'dog'
@@ -29,15 +36,7 @@
                end %>
 
               <%= cl_image_tag image_url, class: "pet-image-category", alt: @pet.name %>
-              </div>
-            </div>
-            <!-- PET INFO -->
-            <div class="col-md-12 text-center mt-3"> <!-- Center the text -->
-              <h1><%= @pet.name.capitalize %></h1>
-              <h3></h3>
-              <div class="pet-details">
-                <p class="house-user"><i class="fas fa-house-user"></i> <%= @pet.address %>, <%= @pet.postcode %></p>
-                <p><i class="fas fa-info"></i> <%= @pet.description %></p>
+              <p><%= @pet.description %></p>
               </div>
             </div>
           </div>
@@ -59,6 +58,10 @@
             <tr>
               <th>End Date:</th>
               <td class="bg-white"><%= @pet.end_date %></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-house-user"></i></th>
+              <td class="bg-white"><%= @pet.address %></td>
             </tr>
           </tbody>
         </table>

@@ -8,6 +8,13 @@
   padding: 30px;
 }
 
+// PET CONTAINER
+// .petcontainer {
+//   height: 450px;
+//   background-color: $yellow;
+//   border-radius: 20px;
+// }
+
 // PET IMAGE & CATEGORY
 .pet-image-container {
   position: relative;
@@ -36,8 +43,11 @@
 .pet-image-category {
   position: absolute;
   width: 130px;
-  top: 250px;
-  left: 20px;
+  top: 50%;
+  left: 80%;
+  border-radius: 25%;
+  background-color: $green;
+  border: 1px solid black;
 }
 
 .categorycontainer {
@@ -51,6 +61,9 @@
 
 .pet-details {
   margin-top: 20px;
+  p {
+    margin: 0;
+  }
 }
 
 .pet-details p {
@@ -64,6 +77,7 @@
 
 .fa-house-user {
   color: $blue;
+  margin-left: 35px;
 }
 
 .fa-info {
