@@ -90,29 +90,21 @@
   color: $yellow;
 }
 
-// TABS
-
 // Tabs
-.tabs {
+.tab-buttons {
   display: flex;
+  gap: 20px;
 }
 
-.tab {
-  background-color: #f0f0f0;
-  border: none;
+.tab-buttons button {
   padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.tab:hover {
-  background-color: #e0e0e0;
-}
-
-// Tab Content
-.tab-content {
-  display: none;
-}
-
-.tab-content.show {
-  display: block;
+.tab-buttons button:hover {
+  background-color: #ddd;
 }

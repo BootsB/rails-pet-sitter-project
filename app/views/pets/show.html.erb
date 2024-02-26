@@ -10,7 +10,7 @@
             </div>
             <!-- PET INFO -->
             <div class="infopet"> <!-- Center the text -->
-            <!-- IMAGES CATEGORY -->
+                <!-- IMAGES CATEGORY -->
                 <% image_url = case @pet.category
                when 'Dog'
                  'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883789/5fb72f5daf6bc223a1acb628aeaaf023_ayw7l8.svg'
@@ -34,38 +34,35 @@
               </div>
               <strong id="petname"><%= @pet.name.capitalize %></strong>
               <div class="pet-details">
-                <div class="tabs">
-                  <%= button_tag "About", class: "tab", id: "about-tab" %>
-                  <%= button_tag "Owner", class: "tab", id: "owner-tab" %>
-                  <%= button_tag "Care Details", class: "tab", id: "care-details-tab" %>
-                  <%= button_tag "Reviews", class: "tab", id: "reviews-tab" %>
-                </div>
+                  <!-- TABS -->
+                <div class="pet-info" data-controller="show-pets">
+                  <!-- Tab Buttons -->
+                  <div class="tab-buttons">
+                    <button data-action="click->show-pets#showTab">About</button>
+                    <button data-action="click->show-pets#showTab">Owner</button>
+                    <button data-action="click->show-pets#showTab">Care Details</button>
+                    <button data-action="click->show-pets#showTab">Reviews</button>
+                  </div>
 
-                <div id="about-content" class="tab-content">
-                  <!-- About Content Here -->
-                  <p><%= @pet.description %></p>
+                  <!-- Tab Contents -->
+                  <div class="tab-content" data-show-pets-target="toggleableElement">
+                    <p><%= @pet.description %></p> <!-- Description -->
+                  </div>
+                  <div class="tab-content" data-show-pets-target="toggleableElement">
+                    <!-- Owner Profile -->
+                  </div>
+                  <div class="tab-content" data-show-pets-target="toggleableElement">
+                    <!-- Care Details -->
+                  </div>
+                  <div class="tab-content" data-show-pets-target="toggleableElement">
+                    <!-- Reviews -->
+                  </div>
                 </div>
-
-                <div id="owner-content" class="tab-content">
-                  <!-- Owner Content Here -->
-                  <p>Owner details</p>
-                </div>
-
-                <div id="care-details-content" class="tab-content">
-                  <!-- Care Details Content Here -->
-                  <p>Care details</p>
-                </div>
-
-                <div id="reviews-content" class="tab-content">
-                  <!-- Reviews Content Here -->
-                  <p>Reviews</p>
-                </div>
-              </div>
-            </div>
+             </div>
+          </div>
+          <!-- END PET IMAGE AND INFO CONTAINER -->
       </div>
-      <!-- END PET IMAGE AND INFO CONTAINER -->
     </div>
-
     <div class="col-md-4 p-3">
       <!-- PET PRICE AND DATES -->
       <div class="card p-3 bg-light">
