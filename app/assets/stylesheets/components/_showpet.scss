@@ -6,6 +6,7 @@
 
 .card-body {
   padding: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
 // PET CONTAINER
@@ -25,12 +26,12 @@
   overflow: hidden;
   height: 400px; // Set a fixed height to maintain consistency
 
-  .default-img-pet {
-    position: absolute;
-    width: 150px;
-    top: 340px;
-    right: 5px;
-  }
+  // .default-img-pet {
+  //   position: absolute;
+  //   width: 150px;
+  //   top: 340px;
+  //   right: 5px;
+  // }
 }
 
 .pet-image {
@@ -38,6 +39,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
+  border: 1px solid black;
 }
 
 .pet-image-category {
@@ -55,21 +57,27 @@
 }
 
 // PET INFO
-.pet-info {
+.infopet {
   padding: 20px;
-}
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: $light-gray;
 
-.pet-details {
-  margin-top: 20px;
-  p {
-    margin: 0;
+  .pet-info {
+    padding: 20px;
+  }
+
+  .pet-details {
+    margin-top: 20px;
+    span {
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+    }
   }
 }
 
-.pet-details p {
-  margin: 0;
-}
-
+// BUTTONS
 .fa-house-user,
 .fa-info {
   margin-right: 10px;
