@@ -42,27 +42,29 @@
 }
 
 .pet-image-category {
-  top: -10%;
-  left: 86%;
+  top: -35px;
+  right: 35px;
 }
 
 .harthlogo {
-  top: -10%;
-  left: 77%;
+  top: -35px;
+  right: 110px;
 }
 
 // PET INFO
+#petname {
+  font-size: 1.5rem;
+}
 .infopet {
   padding: 20px;
   border-radius: 20px;
   background-color: $light-gray;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: -20px;
-
   position: relative;
 
   .pet-info {
-    padding: 20px;
+    padding: 10px;
   }
 
   .pet-details {
@@ -83,7 +85,9 @@
 
 .fa-house-user {
   color: $blue;
-  margin-left: 35px;
+}
+.house-user {
+  text-align: center;
 }
 
 .fa-info {
@@ -98,13 +102,20 @@
 
 .tab-buttons button {
   padding: 10px 20px;
-  background-color: #ccc;
+  background-color: #fff8f8;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+}
+.tab-buttons button:hover {
+  border-bottom: 3px solid red;
+  font-weight: bold;
+}
+.tab-content {
+  display: none;
 }
 
-.tab-buttons button:hover {
-  background-color: #ddd;
+.tab-content.active {
+  display: block;
+  border-bottom: 3px solid red;
+  font-weight: bold;
 }

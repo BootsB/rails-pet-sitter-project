@@ -6,7 +6,6 @@
             <div class="col-md-12 text-center petcontainer">
                 <!-- PET IMG -->
                 <%= cl_image_tag @pet.photo.key, class: "pet-image", alt: @pet.name, gravity: :center, crop: :fill %>
-
             </div>
             <!-- PET INFO -->
             <div class="infopet"> <!-- Center the text -->
@@ -32,7 +31,9 @@
               <div class="harthlogo">
                 <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708950159/red-heart-icon_suoupl.svg", alt: "Harth Image" %>
               </div>
+              <!-- PET NAME -->
               <strong id="petname"><%= @pet.name.capitalize %></strong>
+              <p id="petage"><%= @pet.age %> years old</p>
               <div class="pet-details">
                   <!-- TABS -->
                 <div class="pet-info" data-controller="show-pets">
@@ -78,7 +79,7 @@
               <td class="bg-white"><%= @pet.end_date %></td>
             </tr>
             <tr>
-              <th><i class="fas fa-house-user"></i></th>
+              <th class="house-user"><i class="fas fa-house-user"></i></th>
               <td class="bg-white"><%= @pet.address %></td>
             </tr>
           </tbody>
