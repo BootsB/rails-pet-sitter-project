@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :requests
   has_many :pet_requests, through: :pets, source: :requests
   has_one  :profile
+  has_many :reviews
 
   # PET OWNER START
   def pet_owner?

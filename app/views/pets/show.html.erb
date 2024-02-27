@@ -58,6 +58,14 @@
                       <h2><%= @pet.user.profile.first_name %> <%= @pet.user.profile.last_name %></h2>
                       <p><%= @pet.user.profile.description %></p>
                     </div>
+                    <div class="mt-3">
+                      <h5><strong>Add new review for <%= @pet.user.profile.first_name + " " + @pet.user.profile.last_name %>:</strong></h5>
+                      <%= simple_form_for [@pet.user, @review], url: user_reviews_path(@pet.user), method: :post do |f| %>
+                        <%= f.input :content %>
+                        <%= f.input :rating %>
+                        <%= f.submit "Submit review", class: "btn btn-delete btn-info" %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
                 <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="2">
@@ -66,7 +74,19 @@
                 </div>
                 <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="3">
                   <!-- Reviews Tab Content -->
-                  <p>Reviews Information</p>
+                  <p>Reviews For <%= @pet.user.profile.first_name %>:</p>
+                  <ul class="list-group mb-3">
+                    <% @pet.user.reviews.each do |review| %>
+                      <li class="list-group-item">
+                        <p>
+                          <% review.rating.times do %>
+                            <%= "⭐" %>
+                          <% end %>
+                        </p>
+                        <p><%= "-" + review.content %></p>
+                      </li>
+                    <% end %>
+                    </ul>
                 </div>
               </div>
               </div>

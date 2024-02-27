@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users do
   end
+  resources :users do
+    resources :reviews, only: [:create]
+  end
+
   resources :profiles, only: [:new, :edit, :create, :update]
   get '/profiles/:id', to: 'profiles#show', as: 'user_profile' #just for show profile
   delete '/profiles/:id', to: 'profiles#destroy', as: 'delete_user_profile' #just for delete profile
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :pets do
     resources :requests, only: [:create]
+
+
     collection do
       get :pet_listings
     end

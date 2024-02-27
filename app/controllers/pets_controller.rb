@@ -15,6 +15,8 @@ class PetsController < ApplicationController
   end
 
   def show
+    @review = Review.new
+    @user = @pet.user
     @coords = {
       lat: @pet.latitude,
       lng: @pet.longitude
