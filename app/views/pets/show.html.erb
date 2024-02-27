@@ -1,15 +1,118 @@
-<div class="bg-img" style="background-image: url('<%= cl_image_path @pet.photo.key %>');"></div>
-<div class="container margin-top-negative">
+<div class="container">
   <div class="row">
-    <div class="col-8 p-3">
-      <div class="card bg-light p-3">
-        <h1><strong><%= @pet.name.capitalize %></strong></h1>
-        <p ><%= @pet.age %> years old</p>
+    <div class="col-md-6">
+      <!-- PET IMAGE AND INFO CONTAINER -->
+      <div class="card bg-light mt-3">
+            <div class="col-md-12 text-center petcontainer">
+                <!-- PET IMG -->
+                <%= cl_image_tag @pet.photo.key, class: "pet-image", alt: @pet.name, gravity: :center, crop: :fill %>
+            </div>
+            <!-- PET INFO -->
+            <div class="infopet"> <!-- Center the text -->
+                <!-- IMAGES CATEGORY -->
+                <% image_url = case @pet.category
+               when 'Dog'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883789/5fb72f5daf6bc223a1acb628aeaaf023_ayw7l8.svg'
+               when 'Cat'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883801/9e731b68e6be3e403f5a9da3d42ceb4a_cljpqm.svg'
+               when 'Rabbit'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883841/265291b777d57c71c4ab5a80b819b14f_lj5plw.svg'
+               when 'Ferret'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883847/5c66582570be738a966e3bbfb7891eca_vvnqbk.svg'
+               when 'Fish'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883873/8a750e6469cf33f18d5a46a7252f415d_gpbw0e.svg'
+               when 'Bird'
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883898/01c52ec83a4efaf586efc278cf00b258_exetbe.svg'
+               else
+                 'https://res.cloudinary.com/dg9mc7ach/image/upload/v1708883940/f921728c3016d82b09e9d7b9e4145c09_q06owg.svg'
+               end %>
+              <!-- Image Category -->
+              <div class="pet-image-category"><%= cl_image_tag image_url, alt: @pet.name %></div>
+              <div class="harthlogo">
+                <%= cl_image_tag "https://res.cloudinary.com/dg9mc7ach/image/upload/v1708950159/red-heart-icon_suoupl.svg", alt: "Harth Image" %>
+              </div>
+              <!-- PET NAME -->
+              <strong id="petname"><%= @pet.name.capitalize %></strong>
+              <p id="petage"><%= @pet.age %> years old</p>
+              <div class="pet-details">
+                <!-- TABS -->
+                <div class="pet-info" data-controller="show-pets">
+                <!-- Tab Buttons -->
+                <div class="tab-buttons">
+                  <button data-action="click->show-pets#showTab" data-tab-target="0">About Pet</button>
+                  <button data-action="click->show-pets#showTab" data-tab-target="1">Owner</button>
+                  <button data-action="click->show-pets#showTab" data-tab-target="2">Care Details</button>
+                  <button data-action="click->show-pets#showTab" data-tab-target="3">Reviews</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="0">
+                  <!-- About Tab Content -->
+                  <p id="pet-description"><%= @pet.description %></p>
+                </div>
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="1">
+                  <!-- Owner Tab Content -->
+                  <div class="owner-photo">
+                    <%= cl_image_tag @pet.user.profile.photo.key, class: "rounded-circle", width: 250, height: 250, crop: :thumb, gravity: :center, alt: "Profile Picture" %>
+                    <div class="owner-info">
+                      <h2><%= @pet.user.profile.first_name %> <%= @pet.user.profile.last_name %></h2>
+                      <p><%= @pet.user.profile.description %></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="2">
+                  <!-- Care Details Tab Content -->
+                  <p id="owner-care">Explore comprehensive care instructions tailored to your pet's needs, including feeding schedules, grooming tips, exercise requirements, and more.</p>
+                </div>
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="3">
+                  <!-- Reviews Tab Content -->
+                  <p>Reviews Information</p>
+                </div>
+              </div>
+              </div>
+            </div>
+          <!-- END PET IMAGE AND INFO CONTAINER -->
       </div>
-      <div class="card bg-light mt-3 p-3">
-        <h3>A bit more about them...</h3>
-        <p><%= @pet.description %></p>
+    </div>
+    <div class="col-md-6 p-3">
+      <!-- PET PRICE AND DATES -->
+
+      <div class="card p-3 bg-light">
+        <p id="table-price">From <i class="fas fa-lira-sign" style="color: green;"><%= @pet.price.to_i %></i> per night</p>
+        <div class="tabledate">
+          <div class="tabledate-item">
+            <strong><p>Sitter required</p></strong>
+            <%= @pet.start_date.strftime("%d %b") %> - <%= @pet.end_date.strftime("%d %b") %>
+          </div>
+          <div class="tabledate-item">
+            <strong><p>Care duration</p></strong>
+            <% start_date = @pet.start_date %>
+            <% end_date = @pet.end_date %>
+            <% duration = (end_date - start_date).to_i %>
+            <p><%= duration %> days</p>
+          </div>
+          <div class="tabledate-item">
+            <strong><p>Location</p></strong>
+            <p><%= @pet.address %></p>
+          </div>
+        </div>
+
+        <!-- CURRENT USER LOOK AFTER -->
+        <% if current_user.id == @pet.user_id %>
+          <div class="d-inline-flex mt-3">
+            <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary btn-edit ms-2" %>
+            <%= link_to "Delete", pet_path(@pet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-delete ms-2" %>
+          </div>
+        <% else %>
+          <%= link_to "Apply for care #{@pet.name.capitalize}",
+                      pet_requests_path(@pet.id),
+                      data: { turbo_method: :post, turbo_confirm: "Are you sure?" },
+                      class: 'btn btn-info btn-care mt-3' %>
+        <% end %>
+        <!-- END CURRENT USER LOOK AFTER -->
       </div>
+
+      <!-- GEOLOCATION -->
       <div class="card bg-light mt-3 p-3">
         <div id="map" style="width: 100%; height: 400px;"
           data-controller="map"
@@ -17,38 +120,6 @@
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
-    </div>
-
-    <div class="col-4 p-3">
-      <div class="card p-3 bg-light">
-        <h5>When <%= @pet.name.capitalize %> is free:</h5>
-        <table class="table table-bordered mt-3">
-          <tbody>
-            <tr>
-              <th>Start Date:</th>
-              <td class="bg-white"><%= @pet.start_date %></td>
-            </tr>
-            <tr>
-              <th>End Date:</th>
-              <td class="bg-white"><%= @pet.end_date %></td>
-            </tr>
-          </tbody>
-        </table>
-      <%= link_to "Look after #{@pet.name.capitalize}!", pet_requests_path(@pet.id), data: {turbo_method: :post, turbo_confirm: "Are you sure?"}, class: 'btn btn-info mt-3' %>
-      </div>
-      <div class="card p-3 mt-3 bg-light">
-        <h3>Details</h3>
-        <div class="mt-3">
-            <p><strong>Address:</strong> <%= @pet.address %>, <%= @pet.postcode %></p>
-            <p><strong>Price:</strong> £<%= sprintf('%.2f', @pet.price) %></p>
-        </div>
-      </div>
-      <% if current_user.id == @pet.user_id %>
-        <div class=" d-inline-flex mt-3 ">
-          <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary ms-2" %>
-          <%= link_to "Delete", pet_path(@pet.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger ms-2" %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
