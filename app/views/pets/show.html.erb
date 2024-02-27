@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <!-- PET IMAGE AND INFO CONTAINER -->
       <div class="card bg-light mt-3">
             <div class="col-md-12 text-center petcontainer">
@@ -35,55 +35,68 @@
               <strong id="petname"><%= @pet.name.capitalize %></strong>
               <p id="petage"><%= @pet.age %> years old</p>
               <div class="pet-details">
-                  <!-- TABS -->
+                <!-- TABS -->
                 <div class="pet-info" data-controller="show-pets">
-                  <!-- Tab Buttons -->
-                  <div class="tab-buttons">
-                    <button data-action="click->show-pets#showTab">About</button>
-                    <button data-action="click->show-pets#showTab">Owner</button>
-                    <button data-action="click->show-pets#showTab">Care Details</button>
-                    <button data-action="click->show-pets#showTab">Reviews</button>
-                  </div>
+                <!-- Tab Buttons -->
+                <div class="tab-buttons">
+                  <button data-action="click->show-pets#showTab" data-tab-target="0">About Pet</button>
+                  <button data-action="click->show-pets#showTab" data-tab-target="1">Owner</button>
+                  <button data-action="click->show-pets#showTab" data-tab-target="2">Care Details</button>
+                  <button data-action="click->show-pets#showTab" data-tab-target="3">Reviews</button>
+                </div>
 
-                  <!-- Tab Contents -->
-                  <div class="tab-content" data-show-pets-target="toggleableElement">
-                    <p><%= @pet.description %></p> <!-- Description -->
-                  </div>
-                  <div class="tab-content" data-show-pets-target="toggleableElement">
-                    <!-- Owner Profile -->
-                  </div>
-                  <div class="tab-content" data-show-pets-target="toggleableElement">
-                    <!-- Care Details -->
-                  </div>
-                  <div class="tab-content" data-show-pets-target="toggleableElement">
-                    <!-- Reviews -->
+                <!-- Tab Contents -->
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="0">
+                  <!-- About Tab Content -->
+                  <p id="pet-description"><%= @pet.description %></p>
+                </div>
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="1">
+                  <!-- Owner Tab Content -->
+                  <div class="owner-photo">
+                    <%= cl_image_tag @pet.user.profile.photo.key, class: "rounded-circle", width: 250, height: 250, crop: :thumb, gravity: :center, alt: "Profile Picture" %>
+                    <div class="owner-info">
+                      <h2><%= @pet.user.profile.first_name %> <%= @pet.user.profile.last_name %></h2>
+                      <p><%= @pet.user.profile.description %></p>
+                    </div>
                   </div>
                 </div>
-             </div>
-          </div>
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="2">
+                  <!-- Care Details Tab Content -->
+                  <p id="owner-care">Explore comprehensive care instructions tailored to your pet's needs, including feeding schedules, grooming tips, exercise requirements, and more.</p>
+                </div>
+                <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="3">
+                  <!-- Reviews Tab Content -->
+                  <p>Reviews Information</p>
+                </div>
+              </div>
+              </div>
+            </div>
           <!-- END PET IMAGE AND INFO CONTAINER -->
       </div>
     </div>
-    <div class="col-md-4 p-3">
+    <div class="col-md-6 p-3">
       <!-- PET PRICE AND DATES -->
+
       <div class="card p-3 bg-light">
-        <p>From <i class="fas fa-lira-sign" style="color: green;"><%= @pet.price.to_i %></i> per night</p>
-        <table class="table table-bordered mt-3">
-          <tbody>
-            <tr>
-              <th>Start Date:</th>
-              <td class="bg-white"><%= @pet.start_date %></td>
-            </tr>
-            <tr>
-              <th>End Date:</th>
-              <td class="bg-white"><%= @pet.end_date %></td>
-            </tr>
-            <tr>
-              <th class="house-user"><i class="fas fa-house-user"></i></th>
-              <td class="bg-white"><%= @pet.address %></td>
-            </tr>
-          </tbody>
-        </table>
+        <p id="table-price">From <i class="fas fa-lira-sign" style="color: green;"><%= @pet.price.to_i %></i> per night</p>
+        <div class="tabledate">
+          <div class="tabledate-item">
+            <strong><p>Sitter required</p></strong>
+            <%= @pet.start_date.strftime("%d %b") %> - <%= @pet.end_date.strftime("%d %b") %>
+          </div>
+          <div class="tabledate-item">
+            <strong><p>Care duration</p></strong>
+            <% start_date = @pet.start_date %>
+            <% end_date = @pet.end_date %>
+            <% duration = (end_date - start_date).to_i %>
+            <p><%= duration %> days</p>
+          </div>
+          <div class="tabledate-item">
+            <strong><p>Location</p></strong>
+            <p><%= @pet.address %></p>
+          </div>
+        </div>
+
         <!-- CURRENT USER LOOK AFTER -->
         <% if current_user.id == @pet.user_id %>
           <div class="d-inline-flex mt-3">
@@ -91,7 +104,7 @@
             <%= link_to "Delete", pet_path(@pet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger ms-2" %>
           </div>
         <% else %>
-          <%= link_to "Look after #{@pet.name.capitalize}",
+          <%= link_to "Apply for care #{@pet.name.capitalize}",
                       pet_requests_path(@pet.id),
                       data: { turbo_method: :post, turbo_confirm: "Are you sure?" },
                       class: 'btn btn-info mt-3' %>
