@@ -100,14 +100,14 @@
         <!-- CURRENT USER LOOK AFTER -->
         <% if current_user.id == @pet.user_id %>
           <div class="d-inline-flex mt-3">
-            <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary ms-2" %>
-            <%= link_to "Delete", pet_path(@pet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger ms-2" %>
+            <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-primary btn-edit ms-2" %>
+            <%= link_to "Delete", pet_path(@pet.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-delete ms-2" %>
           </div>
         <% else %>
           <%= link_to "Apply for care #{@pet.name.capitalize}",
                       pet_requests_path(@pet.id),
                       data: { turbo_method: :post, turbo_confirm: "Are you sure?" },
-                      class: 'btn btn-info mt-3' %>
+                      class: 'btn btn-info btn-care mt-3' %>
         <% end %>
         <!-- END CURRENT USER LOOK AFTER -->
       </div>

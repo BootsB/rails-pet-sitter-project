@@ -97,7 +97,7 @@
 .fa-info {
   color: $yellow;
 }
-.btn-primary {
+.btn-edit {
   background-color: $yellow;
   color: #fff8f8;
   border: none;
@@ -108,7 +108,7 @@
   transition: all 0.3s ease;
   font-weight: bold;
 }
-.btn-danger {
+.btn-delete {
   background-color: $red;
   color: #fff8f8;
   border: none;
@@ -119,7 +119,7 @@
   transition: all 0.3s ease;
   font-weight: bold;
 }
-.btn-info {
+.btn-care {
   background-color: $blue;
   color: #fff8f8;
   border: none;
