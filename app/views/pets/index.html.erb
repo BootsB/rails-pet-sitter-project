@@ -1,37 +1,42 @@
-<div class="row" data-controller="filter-pets">
-  <div class="col-6 m-auto mt-3">
-    <div class="bg-light p-3">
-      <h1 class="mt-3 mb-4">Find your perfect match 🐶♥️</h1>
-      <div class="mt-3" class="container filter-form">
-        <%= simple_form_for(@pet, data: { filter_pets_target: "form", action:"submit->filter-pets#send" }) do |f| %>
-          <div class="row align-items-center">
-            <div class="col">
-            <%= f.input :city, label: "City", input_html: { data: { filter_pets_target: "city" } }%>
-            </div>
-            <div class="col">
-              <%= f.input :category, label:"Pet's species", collection: Pet.categories.keys, input_html: { data: { filter_pets_target: "category" } } %>
-            </div>
-            <div class="col">
-              <%= f.input :start_date, label: "Start date",
-                    as: :string,
-                    input_html: { data: { controller: "datepicker", filter_pets_target: "startDate" } } %>
-            </div>
-            <div class="col">
-              <%= f.input :end_date, label: "End date",
-                    as: :string,
-                    input_html: { data: { controller: "datepicker", filter_pets_target: "endDate" } } %>
-            </div>
-            <div class="col">
-              <%= f.submit "Search", class: "btn btn-primary mb-2" %>
-            </div>
+<div class="container" data-controller="filter-pets">
+  <h3 class="mt-4 mb-4 text-center">Find your perfect match 🐶♥️</h3>
+    <%= simple_form_for(@pet, data: { filter_pets_target: "form", action:"submit->filter-pets#send" }) do |f| %>
+      <div class="mt-3 filter-form search-bar">
+          <div class="col city">
+          <%= f.input :city,
+                label: "",
+                input_html: { data: { filter_pets_target: "city" } },
+                required: false%>
           </div>
-        <% end %>
-      </div>
+          <div class="col category">
+            <%= f.input :category,
+                  label:"",
+                  collection: Pet.categories.keys,
+                  input_html: { data: { filter_pets_target: "category" } },
+                  required: false %>
+          </div>
+          <div class="col start-date">
+            <%= f.input :start_date, label: "",
+                  as: :string,
+                  input_html: { data: { controller: "datepicker", filter_pets_target: "startDate" } },
+                  required: false %>
+          </div>
+          <div class="col end-date">
+            <%= f.input :end_date, label: "",
+                  as: :string,
+                  input_html: { data: { controller: "datepicker", filter_pets_target: "endDate" } },
+                  required: false%>
+          </div>
+          <div class="col search">
+            <%= button_tag(type: 'submit', class: "btn btn-info mt-3 search-button") do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 
-      <p class="mt-3" data-filter-pets-target="petAmount"></p>
+  <p class="mt-3" data-filter-pets-target="petAmount"></p>
 
-      <div class="row" data-filter-pets-target="items">
-      </div>
-    </div>
+  <div class="row" data-filter-pets-target="items">
   </div>
 </div>

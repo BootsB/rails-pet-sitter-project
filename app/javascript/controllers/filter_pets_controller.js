@@ -25,7 +25,9 @@ export default class extends Controller {
         this.itemsTarget.innerHTML = data;
         const className = "card-img-top";
         const count = countClassOccurrences(data, className);
-        if (count) {
+        if (count == 1) {
+          this.petAmountTarget.innerHTML = `You matched with <strong>${count}</strong> pet ♥️:`
+        } else if (count > 1) {
           this.petAmountTarget.innerHTML = `You matched with <strong>${count}</strong> pets ♥️:`
         } else {
           this.petAmountTarget.innerHTML = "No pets fit your match 💔"

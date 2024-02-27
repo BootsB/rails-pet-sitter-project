@@ -1,13 +1,13 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('Pet-sitter-banner.jpg') %>);">
   <div class="container">
     <h1>Find your next furry friend to take care of</h1>
-    <p class="mt-1">Connect with pet owners in your area who need trusted pet sitters</p>
+    <p class="mb-3">Connect with pet owners in your area who need trusted pet sitters</p>
     <%= link_to "Search now", pets_path, class: 'btn btn-info btn-lrg mt-3' %>
   </div>
 </div>
 
 <div class="container">
-  <h1 class="mt-3">Meet some recent additions</h1>
+  <h3 class="mt-3">Meet some recent additions</h3>
 
   <div class="row mt-3">
     <% if @pets %>

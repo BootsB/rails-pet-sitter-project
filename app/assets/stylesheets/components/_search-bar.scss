@@ -1,0 +1,19 @@
+.search-bar{
+  padding: 7px 7px 7px 7px;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
+}
+
+.search-button{
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+}
+
+.col {
+  padding: 10px 10px 10px 10px;
+}
+
+h2{
+  margin-left:0px;
+}
