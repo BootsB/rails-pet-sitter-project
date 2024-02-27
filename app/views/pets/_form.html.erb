@@ -3,8 +3,10 @@
   <%= f.input :age, label: "Pet's age"%>
   <%= f.input :category, label:"Pet's species", collection: Pet.categories.keys %>
   <%= f.input :address, label: "Pet's address"%>
-  <%= f.input :postcode, label: "Postcode" %>
-  <%= f.input :description, label: "How can we help you?" %>%
+  <%= f.input :postcode, label: "Postcode"%>
+  <%= f.input :city, label: "City"%>
+  <%= f.input :country, as: :country, prompt: "Select Country" %>
+  <%= f.input :description, label: "How can we help you?" %>
   <%= f.input :price, label: "How much is your daily offer?"%>
   <%= f.input :start_date, label: "Start date",
               as: :string,
