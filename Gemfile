@@ -81,3 +81,4 @@ end
 gem "devise"
 gem "cloudinary"
 gem "geocoder"
+gem 'country_select', '~> 8.0'

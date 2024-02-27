@@ -8,6 +8,7 @@ class PetsController < ApplicationController
     @pets = Pet.where(category: params[:category]) if params[:category].present?
     @pets = @pets.where("START_DATE >= ?", params[:start_date]) if params[:start_date].present?
     @pets = @pets.where("END_DATE <= ?", params[:end_date]) if params[:end_date].present?
+    @pets = @pets.where("city ILIKE ?", params[:city]) if params[:city].present?
     respond_to do |format|
       format.html
       format.text { render partial: "pets/pet_info", locals: {pets: @pets}, formats: [:html] }
@@ -55,7 +56,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :age, :address, :postcode, :description, :price, :start_date, :end_date, :category, :photo)
+    params.require(:pet).permit(:name, :age, :address, :postcode, :description, :price, :start_date, :end_date, :category, :photo, :country, :city)
   end
 
   def set_pet

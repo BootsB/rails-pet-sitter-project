@@ -8,11 +8,10 @@ function countClassOccurrences(htmlData, className) {
 
 // Connects to data-controller="filter-pets"
 export default class extends Controller {
-  static targets = ["items", "form", "category", "startDate", "endDate", "petAmount"]
+  static targets = ["items", "form", "category", "startDate", "endDate", "city", "petAmount"]
   send(event) {
     event.preventDefault();
-    // const url = `/pets/?category=${this.categoryTarget.value}`;
-    const url = `/pets/?category=${this.categoryTarget.value}&start_date=${this.startDateTarget.value}&end_date=${this.endDateTarget.value}`;
+    const url = `/pets/?category=${this.categoryTarget.value}&start_date=${this.startDateTarget.value}&end_date=${this.endDateTarget.value}&city=${this.cityTarget.value}`;
     const options = {
       method: 'GET',
       headers: {
