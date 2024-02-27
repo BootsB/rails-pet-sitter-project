@@ -1,12 +1,14 @@
 <div class="container">
   <h1>Booking Requests</h1>
-  <!-- Move the horizontal line and pet name outside the flex container -->
   <% if @requests_received.any? %>
     <% requests_grouped_by_pet_id = @requests_received.group_by(&:pet_id) %>
     <% requests_grouped_by_pet_id.each do |pet_id, requests| %>
       <% pet = requests.first.pet %>
       <hr class="horizontal-line">
-      <h2><%= pet.name %></h2> <!-- Display pet name -->
+      <div class="pet-info text-center">
+        <h2><%= pet.name %></h2>
+        <h6>Sitter required: <%= pet.start_date.strftime("%d %b") %> - <%= pet.end_date.strftime("%d %b") %></h3>
+      </div>
       <div id="requests-container" class="d-flex flex-wrap justify-content-center">
         <% requests.each do |request| %>
           <div class="request-card mb-4">
