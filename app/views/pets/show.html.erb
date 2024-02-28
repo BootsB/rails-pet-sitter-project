@@ -53,7 +53,11 @@
                 <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="1">
                   <!-- Owner Tab Content -->
                   <div class="owner-photo">
-                    <%= cl_image_tag @pet.user.profile.photo.key, class: "rounded-circle", width: 250, height: 250, crop: :thumb, gravity: :center, alt: "Profile Picture" %>
+                    <% if @pet.user.profile.photo.attached? %>
+                      <%= cl_image_tag @pet.user.profile.photo.key, class: "rounded-circle", width: 250, height: 250, crop: :thumb, gravity: :center, alt: "Profile Picture" %>
+                      <% else %>
+                        <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "rounded-circle", width: 150, height: 150, alt: "Default Profile Picture" %>
+                      <% end %>
                     <div class="owner-info">
                       <h2><%= @pet.user.profile.first_name %> <%= @pet.user.profile.last_name %></h2>
                       <p><%= @pet.user.profile.description %></p>
