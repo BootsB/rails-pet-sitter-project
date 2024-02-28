@@ -22,6 +22,10 @@
     object-fit: cover;
   }
 }
+a {
+  text-decoration: none;
+  color: $blue;
+}
 
 .pet-image-category, .harthlogo {
   position: absolute;
