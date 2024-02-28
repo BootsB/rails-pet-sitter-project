@@ -29,8 +29,8 @@
               <p><strong><%= request.user.profile.first_name %></strong> made a request for <strong><%= request.pet.name %></strong></p>
             </div>
             <div class="d-flex justify-content-between">
-              <%= link_to "Accept", "/dashboard", class: 'btn btn-sm btn-outline-primary', data: { accept_request_target: "button", action:"click->accept-request#message" } %>
-              <%= link_to "Decline", "/dashboard", class: 'btn btn-sm btn-outline-danger', data: { accept_request_target: "button" } %>
+              <%= link_to "Accept", "/dashboard", method: :post, class: 'btn btn-sm btn-outline-primary', data: { accept_request_target: "button", action:"click->accept-request#message" }  %>
+              <%= link_to "Decline", "/dashboard", method: :post, class: 'btn btn-sm btn-outline-danger', data: { accept_request_target: "button" } %>
               <p data-accept-request-target = "reply"></p>
             </div>
           </div>

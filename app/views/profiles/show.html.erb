@@ -25,6 +25,10 @@
             <div class="text-center">
               <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-info' %>
             </div>
+          <% else %>
+            <div class="text-center">
+              <%= link_to 'Back', "/dashboard", class: 'btn btn-info' %>
+            </div>
           <% end %>
         </div>
       </div>

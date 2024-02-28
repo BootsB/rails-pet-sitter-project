@@ -69,15 +69,41 @@
                 </div>
                 <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="2">
                   <!-- Care Details Tab Content -->
-                  <p id="owner-care">Explore comprehensive care instructions tailored to your pet's needs, including feeding schedules, grooming tips, exercise requirements, and more.</p>
+                  <p id="owner-care">🐾 Celebrating My Beloved <strong><%= @pet.name.capitalize %></strong> 🐾
+                  <ul>
+                    <li>Feeding time = happy time!</li>
+                    <li>Exploring and playing with my lovely companion.</li>
+                    <li>Keeping <%= @pet.name.capitalize %> looking sharp and feeling fresh.</li>
+                    <li>Regular vet check-ups to keep my buddy healthy.</li>
+                    <li>Teaching tricks and learning together.</li>
+                    <li>Making our home a safe haven for <%= @pet.name.capitalize %>.</li>
+                    <li>Showering my furry friend with endless affection!</li>
+                  </ul>
+                  <p>Here's to many more joyful moments with <%= @pet.name.capitalize %>! ❤️🐾 <a href="#">#PetLove</a> <a href ="#">#BestCompanion</a>
+                  <a href ="#">#PetParentLife</a>
+                  <a href ="#">#PetLOVERS</a>
+                  </p>
                 </div>
                 <div class="tab-content" data-show-pets-target="tabContent" data-tab-target="3">
                   <!-- Reviews Tab Content -->
-                  <p>Reviews Information</p>
+                  <h2>John Doe</h2>
+                  <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "rounded-circle", width: 45, height: 45, alt: "Default Profile Picture" %>
+                  <br>
+                  <p>⭐️⭐️⭐️⭐️⭐️</p>
+                  <p>
+                    "I had the pleasure of looking after <%= @pet.name.capitalize %> for a week and it was an amazing experience. <%= @pet.name.capitalize %> is a very well-behaved and loving pet. I would definitely look after <%= @pet.name.capitalize %> again in the future."
+                  </p>
+                  <h2>Jane Doe</h2>
+                  <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", class: "rounded-circle", width: 45, height: 45, alt: "Default Profile Picture" %>
+                  <br>
+                  <p>⭐️⭐️⭐️⭐️⭐️</p>
+                  <p>
+                    "I had the pleasure of looking after <%= @pet.name.capitalize %> very lovely and friendly pet. I already miss <%= @pet.name.capitalize %>"
+                  </p>
                 </div>
               </div>
-              </div>
             </div>
+          </div>
           <!-- END PET IMAGE AND INFO CONTAINER -->
       </div>
     </div>
@@ -85,7 +111,7 @@
       <!-- PET PRICE AND DATES -->
 
       <div class="card p-3 bg-light">
-        <p id="table-price">From <i class="fas fa-lira-sign" style="color: green;"><%= @pet.price.to_i %></i> per night</p>
+        <p id="table-price">From <i class="fas fa-lira-sign" style="color: green;"><%= @pet.price.to_i %></i> per day</p>
         <div class="tabledate">
           <div class="tabledate-item">
             <strong><p>Sitter required</p></strong>
