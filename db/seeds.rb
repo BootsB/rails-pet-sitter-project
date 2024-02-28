@@ -49,7 +49,7 @@ pet2 = Pet.new(
   category: "Dog",
   start_date: "2024-03-01",
   end_date: "2024-03-05",
-  user_id: 1,
+  user_id: 2,
   seeding: true
 )
 pet2.save!
@@ -67,7 +67,7 @@ pet3 = Pet.new(
   category: "Dog",
   start_date: "2024-02-29",
   end_date: "2024-03-09",
-  user_id: 1,
+  user_id: 2,
   seeding: true
 )
 pet3.save!
@@ -103,7 +103,7 @@ pet5 = Pet.new(
   category: "Cat",
   start_date: "2024-03-02",
   end_date: "2024-03-11",
-  user_id: 1,
+  user_id: 2,
   seeding: true
 )
 pet5.save!
