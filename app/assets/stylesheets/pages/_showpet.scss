@@ -157,6 +157,9 @@
 .tab-buttons button:hover {
   border-bottom: 3px solid $blue;
 }
+.tab-buttons button.active {
+  border-bottom: 3px solid $blue;
+}
 .tab-content {
   display: none;
   padding: 20px;
