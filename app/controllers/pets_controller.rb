@@ -11,7 +11,7 @@ class PetsController < ApplicationController
     @pets = @pets.where("city ILIKE ?", params[:city]) if params[:city].present?
     respond_to do |format|
       format.html
-      format.text { render partial: "pets/pet_info", locals: {pets: @pets}, formats: [:html] }
+      format.text { render partial: "pets/pet_info", locals: { pets: @pets }, formats: [:html] }
     end
   end
 

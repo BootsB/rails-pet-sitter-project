@@ -1,7 +1,15 @@
 .pet-card {
+  border-radius: 10%;
+
+  .card-img-top {
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+  }
   .card-body {
     height: 200px;
     overflow: hidden;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
 
     p {
       overflow: hidden;
@@ -11,4 +19,8 @@
       -webkit-box-orient: vertical;
     }
   }
+}
+
+.flat-card-link{
+  text-decoration:none;
 }
