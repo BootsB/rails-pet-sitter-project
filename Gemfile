@@ -82,3 +82,4 @@ gem "devise"
 gem "cloudinary"
 gem "geocoder"
 gem 'country_select', '~> 8.0'
+gem 'flag-icons-rails'

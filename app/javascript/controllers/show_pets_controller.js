@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus";
 
-
 export default class extends Controller {
-  static targets = ["tabContent"];
+  static targets = ["tabContent", "tabButton"]; // Add 'tabButton' target
+
   currentIndex = 0; // Initialize the current index to the first tab
 
   showTab(event) {
@@ -11,13 +11,20 @@ export default class extends Controller {
   }
 
   toggleTabContent(index) {
-    // Hide the currently active tab content
-    this.tabContentTargets[this.currentIndex].classList.remove("active");
+    // Remove the 'active' class from all tab contents
+    this.tabContentTargets.forEach(tab => tab.classList.remove('active'));
 
     // Show the newly selected tab content
     this.tabContentTargets[index].classList.add("active");
 
-    // Update the current index
-    this.currentIndex = index;
+    // Remove the 'active' class from all tab buttons
+    this.tabButtonTargets.forEach(btn => btn.classList.remove('active'));
+
+    // Add the 'active' class to the clicked tab button
+    event.currentTarget.classList.add('active');
+
+    // Remove the hover effect from all buttons
+    this.tabButtonTargets.forEach(btn => btn.classList.remove('hover'));
   }
+
 }
