@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "flag-icon-css": "^4.1.7",
     "stimulus": "^3.2.2"
   }
 }

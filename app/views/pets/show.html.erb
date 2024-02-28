@@ -33,6 +33,9 @@
               </div>
               <!-- PET NAME -->
               <strong id="petname"><%= @pet.name.capitalize %></strong>
+              <% if @pet.country.present? %>
+                <span class="flag-icon flag-icon-<%= @pet.country.downcase %>"></span>
+              <% end %>
               <p id="petage"><%= @pet.age %> years old</p>
               <div class="pet-details">
                 <!-- TABS -->
