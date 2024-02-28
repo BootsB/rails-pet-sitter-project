@@ -1,7 +1,14 @@
 class Pet < ApplicationRecord
   has_many :requests
   belongs_to :user
-  validates :name, :address, :age, :postcode, :description, :price, :start_date, :end_date, :photo, :category, :country, :city, presence: true
+  validates :name, :address, :age, :postcode, :description, :price, :start_date, :end_date, :category, :country, :city, presence: true
+  validates :photo, presence: true, unless: -> { new_record? || seeding? }
+
+  attr_accessor :seeding
+
+  def seeding?
+    seeding == true
+  end
   has_one_attached :photo
   enum category: {
     "Dog" => 0,
